@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:sports_app_green_eagles/models/get_leagues_model.dart';
+import 'package:sports_app_green_eagles/data/models/get_leagues_model.dart';
 
 class GetLeaguesRepo {
   Future<GetLeaguesModel?> getLeagues(countryKey) async {

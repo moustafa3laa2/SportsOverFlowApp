@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:sports_app_green_eagles/cubits/GetLeaguesCubit/get_leagues_cubit.dart';
+import 'package:sports_app_green_eagles/data/cubits/GetLeaguesCubit/get_leagues_cubit.dart';
 
 class LeaguesContainer extends StatelessWidget {
   final int index;

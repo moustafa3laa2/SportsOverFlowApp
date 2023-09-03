@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
-import 'package:sports_app_green_eagles/models/get_leagues_model.dart';
-import 'package:sports_app_green_eagles/repositories/get_leagues_repo.dart';
+import 'package:sports_app_green_eagles/data/models/get_leagues_model.dart';
+import 'package:sports_app_green_eagles/data/repositories/get_leagues_repo.dart';
 
 part 'get_leagues_state.dart';
 

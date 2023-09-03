@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sports_app_green_eagles/cubits/GetCountriesCubit/get_countries_cubit.dart';
+import 'package:sports_app_green_eagles/data/cubits/GetCountriesCubit/get_countries_cubit.dart';
 import 'package:sports_app_green_eagles/widgets/countries_container.dart';
 import 'package:sports_app_green_eagles/widgets/top_bar.dart';
 

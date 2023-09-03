@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sports_app_green_eagles/cubits/GetLeaguesCubit/get_leagues_cubit.dart';
+import 'package:sports_app_green_eagles/data/cubits/GetLeaguesCubit/get_leagues_cubit.dart';
 import 'package:sports_app_green_eagles/widgets/leagues_container.dart';
 import 'package:sports_app_green_eagles/widgets/top_bar.dart';
 

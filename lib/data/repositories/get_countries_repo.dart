@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:sports_app_green_eagles/models/get_countries_model.dart';
+import 'package:sports_app_green_eagles/data/models/get_countries_model.dart';
 import 'package:http/http.dart' as http;
 
 class GetCountriesRepo {
