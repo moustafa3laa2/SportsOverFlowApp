@@ -13,3 +13,11 @@ final class GetCountriesSuccess extends GetCountriesState {
 }
 
 final class GetCountriesError extends GetCountriesState {}
+
+
+final class GetNewsLoading extends GetCountriesState {}
+final class GetNewsSuccess extends GetCountriesState {
+  final GetNewsModel response;
+  GetNewsSuccess({required this.response});
+}
+final class GetNewsError extends GetCountriesState {}

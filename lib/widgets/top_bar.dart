@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class TopBar extends StatelessWidget implements PreferredSizeWidget {
   TopBar({super.key, required this.index});
-  List titles = ["COUNTRIES", "LEAGUES"];
+  List titles = ["COUNTRIES & LATEST NEWS", "Latest News","LEAGUES"];
   final int index;
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
@@ -16,7 +16,7 @@ class TopBar extends StatelessWidget implements PreferredSizeWidget {
         title: Text(
           titles[index],
           style: const TextStyle(
-              fontFamily: "SofiaPro",
+              fontFamily: "SofiaProBold",
               color: Colors.white,
               fontWeight: FontWeight.w600),
         ));

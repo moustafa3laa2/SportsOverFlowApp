@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:sports_app_green_eagles/data/cubits/GetLeaguesCubit/get_leagues_cubit.dart';
+import 'package:sports_app_green_eagles/data/cubits/GetTeamsCubit/get_teams_cubit.dart';
+import 'package:sports_app_green_eagles/screens/teams_top_scorers.dart';
 
 class LeaguesContainer extends StatelessWidget {
   final int index;
@@ -55,7 +57,7 @@ class LeaguesContainer extends StatelessWidget {
                         child: Text(
                           state.response.result[index].leagueName,
                           style: const TextStyle(
-                              fontFamily: "SofiaPro",
+                              fontFamily: "SofiaProBold",
                               fontSize: 28,
                               color: Color(0xFF38003C),
                               fontWeight: FontWeight.w900),
@@ -81,7 +83,7 @@ class LeaguesContainer extends StatelessWidget {
                           child: Text(
                             state.response.result[index].countryName,
                             style: const TextStyle(
-                                fontFamily: "SofiaPro",
+                                fontFamily: "SofiaProBoldBold",
                                 fontSize: 28,
                                 color: Color(0xFF38003C),
                                 fontWeight: FontWeight.w500),
@@ -94,43 +96,53 @@ class LeaguesContainer extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.all(4),
                       child: ElevatedButton(
-                          style: ButtonStyle(
-                            shape: MaterialStateProperty.all<
-                                RoundedRectangleBorder>(
-                              RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
-                            ),
-                            overlayColor:
-                                MaterialStateProperty.resolveWith<Color>(
-                              (Set<MaterialState> states) {
-                                if (states.contains(MaterialState.pressed)) {
-                                  return const Color(0xFF38003C)
-                                      .withOpacity(.1);
-                                }
-                                return const Color(0xFF38003C).withOpacity(.1);
-                              },
+                        style: ButtonStyle(
+                          shape:
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8.0),
                             ),
                           ),
-                          onPressed: () {},
-                          child: const Row(
-                            children: [
-                              Spacer(),
-                              Text(
-                                "View Teams",
-                                style: TextStyle(
-                                    fontFamily: "SofiaPro",
-                                    fontSize: 18,
-                                    color: Color(0xFF38003C),
-                                    fontWeight: FontWeight.w100),
-                              ),
-                              Spacer(),
-                              Icon(
-                                Icons.arrow_forward,
-                                color: Color(0xFF38003C),
-                              )
-                            ],
-                          )),
+                          overlayColor:
+                              MaterialStateProperty.resolveWith<Color>(
+                            (Set<MaterialState> states) {
+                              if (states.contains(MaterialState.pressed)) {
+                                return const Color(0xFF38003C).withOpacity(.1);
+                              }
+                              return const Color(0xFF38003C).withOpacity(.1);
+                            },
+                          ),
+                        ),
+                        onPressed: () {
+                          context.read<GetTeamsCubit>().getTeams();
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute<void>(
+                              builder: (BuildContext context) =>
+                                  const TeamsTopScorersScreen(),
+
+                            ),
+                          );
+                        },
+                        child: const Row(
+                          children: [
+                            Spacer(),
+                            Text(
+                              "View Teams",
+                              style: TextStyle(
+                                  fontFamily: "SofiaProBold",
+                                  fontSize: 18,
+                                  color: Color(0xFF38003C),
+                                  fontWeight: FontWeight.w100),
+                            ),
+                            Spacer(),
+                            Icon(
+                              Icons.arrow_forward,
+                              color: Color(0xFF38003C),
+                            )
+                          ],
+                        ),
+                      ),
                     ),
                   )
                 ],

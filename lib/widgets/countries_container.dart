@@ -60,7 +60,7 @@ class CountriesContainer extends StatelessWidget {
                         fit: BoxFit.scaleDown,
                         child: Text(state.response.result[index].countryName,
                             style: const TextStyle(
-                                fontFamily: "SofiaPro",
+                                fontFamily: "SofiaProBold",
                                 fontSize: 20,
                                 color: Color(0xFF38003C),
                                 fontWeight: FontWeight.w100)),
