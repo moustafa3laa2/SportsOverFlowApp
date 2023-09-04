@@ -18,7 +18,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-     final String teamidd = "97";
     return MultiBlocProvider(
       providers: [
         BlocProvider<GetLeaguesCubit>(
@@ -31,7 +30,7 @@ class MyApp extends StatelessWidget {
           create: (BuildContext context) => GetTeamsCubit(),
         ),
          BlocProvider<GetplayerCubit>(
-          create: (BuildContext context) => GetplayerCubit(teamidd),
+          create: (BuildContext context) => GetplayerCubit(),
         ),
       
       ],

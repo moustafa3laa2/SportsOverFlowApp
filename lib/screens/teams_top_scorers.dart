@@ -6,26 +6,29 @@ import 'package:http/http.dart';
 import 'package:sports_app_green_eagles/data/cubits/GetTeamsCubit/get_teams_cubit.dart';
 import 'package:sports_app_green_eagles/screens/players.dart';
 
+import '../data/cubits/GetPlayerCubit/get_player_cubit.dart';
+
 // import 'package:sports_app/Data/Models/get_teams.dart';
 // import 'package:sports_app/Data/Repository/get_teams_repo.dart';
 
-class TeamsTopScorersScreen extends StatelessWidget {
-  const TeamsTopScorersScreen({super.key});
+class TeamsTopScorersScreen extends StatefulWidget {
+  const TeamsTopScorersScreen({super.key, required this.leagueId});
+  final int leagueId;
 
+  @override
+  State<TeamsTopScorersScreen> createState() => _TeamsTopScorersScreenState();
+}
+
+class _TeamsTopScorersScreenState extends State<TeamsTopScorersScreen> {
   // @override
-  // void initState() {
-  //   // TODO: implement initState
-  //   context.read<GetTeamsCubit>().getTeams();
-
-  // }
-
-  //
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         leading: BackButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pop(context);
+          },
           color: Colors.white,
         ),
         elevation: 0,
@@ -121,7 +124,7 @@ class TeamsTopScorersScreen extends StatelessWidget {
                           // ),
                           ElevatedButton(
                             onPressed: () {
-                              context.read<GetTeamsCubit>().getTeams();
+                              context.read<GetTeamsCubit>().getTeams(widget.leagueId);
                             },
                             child: const Text(
                               'League Teams',
@@ -151,7 +154,7 @@ class TeamsTopScorersScreen extends StatelessWidget {
                           ),
                           ElevatedButton(
                             onPressed: () {
-                              context.read<GetTeamsCubit>().getTop();
+                              context.read<GetTeamsCubit>().getTop(widget.leagueId);
                             },
                             child: const Text(
                               'Top Scorers',
@@ -207,7 +210,7 @@ class TeamsTopScorersScreen extends StatelessWidget {
                           children: [
                             ElevatedButton(
                               onPressed: () {
-                                context.read<GetTeamsCubit>().getTeams();
+                                context.read<GetTeamsCubit>().getTeams(widget.leagueId);
                               },
                               child: const Text(
                                 'League Teams',
@@ -236,7 +239,7 @@ class TeamsTopScorersScreen extends StatelessWidget {
                             ),
                             ElevatedButton(
                               onPressed: () {
-                                context.read<GetTeamsCubit>().getTop();
+                                context.read<GetTeamsCubit>().getTop(widget.leagueId);
                               },
                               child: const Text(
                                 'Top Scorers',
@@ -293,7 +296,7 @@ class TeamsTopScorersScreen extends StatelessWidget {
                             context,
                             MaterialPageRoute<void>(
                               builder: (BuildContext context) => Players(
-                                teamname: 'PLAYERS OF TEAM',
+                                teamname:  state.response.result[0].teamName, teamKey:  state.response.result[0].teamKey,
                               ),
                             ),
                           );
@@ -362,7 +365,8 @@ class TeamsTopScorersScreen extends StatelessWidget {
                             context,
                             MaterialPageRoute<void>(
                               builder: (BuildContext context) => Players(
-                                teamname: 'PLAYERS OF TEAM',
+                                teamname:  state.response.result[i].teamName,
+                                teamKey: state.response.result[i].teamKey,
                               ),
                             ),
                           );

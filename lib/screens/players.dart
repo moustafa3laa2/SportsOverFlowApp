@@ -11,10 +11,10 @@ import '../main.dart';
 class Players extends StatefulWidget {
   Players({
     Key? key,
-    required this.teamname,
+    required this.teamname, required this.teamKey,
   }) : super(key: key);
   final String teamname;
-
+  final int teamKey;
   @override
   State<Players> createState() => _PlayersState();
 }
@@ -24,7 +24,7 @@ class _PlayersState extends State<Players> {
   void initState() {
     super.initState();
 
-    context.read<GetplayerCubit>().getplayer();
+    context.read<GetplayerCubit>().getplayer(widget.teamKey);
   }
 
   @override
@@ -32,7 +32,9 @@ class _PlayersState extends State<Players> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pop(context);
+          },
           icon: const Icon(Icons.arrow_back_outlined, color: Colors.white),
         ),
         actions: [

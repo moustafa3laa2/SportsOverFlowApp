@@ -6,18 +6,18 @@ import 'package:sports_app_green_eagles/data/repositories/get_player_repo.dart';
 part 'get_player_state.dart';
 
 class GetplayerCubit extends Cubit<GetplayerState> {
-  final String teamidd;
+
   late Getplayersrepo PRepo;
 
-  GetplayerCubit(this.teamidd) : super(GetplayerInitial()) {
-    PRepo = Getplayersrepo(teamId: teamidd);
+  GetplayerCubit() : super(GetplayerInitial()) {
+    PRepo = Getplayersrepo();
   }
 
-  getplayer() async {
+  getplayer(teamId) async {
     emit(loding());
 
     try {
-      await PRepo.getplayer().then((value) {
+      await PRepo.getplayer(teamId ).then((value) {
         if (value != null) {
           emit(getplayerscucces(Result: value));
         } else {

@@ -7,9 +7,8 @@ import 'package:sports_app_green_eagles/data/models/get_player_model.dart';
 
 class Getplayersrepo {
   final String apiKey="78d1729b6765416f7346de1b1f4ee4e06b81e3286cd1218a202b18ebe0261326";
-  final String teamId;
-  Getplayersrepo ({ required this.teamId});
-  Future<PlayerData?> getplayer() async {
+  Getplayersrepo ();
+  Future<PlayerData?> getplayer(teamId) async {
     try {
       final apiUrl =
           'https://apiv2.allsportsapi.com/football/?&met=Players&teamId=$teamId&APIkey=$apiKey';

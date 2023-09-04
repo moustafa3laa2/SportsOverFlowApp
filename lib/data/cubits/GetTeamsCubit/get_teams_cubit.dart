@@ -19,11 +19,11 @@ class GetTeamsCubit extends Cubit<GetTeamsState> {
 
 
 
- getTop() async{
+ getTop(leagueId) async{
     emit(GetTopLoading());
 
     try {
-      await topRepo.getTop().then((value) {
+      await topRepo.getTop(leagueId).then((value) {
         if(value != null){
           emit(GetTopSuccess(response: value));
         }else{
@@ -34,11 +34,11 @@ class GetTeamsCubit extends Cubit<GetTeamsState> {
       emit(GetTopError());
     }
   }
-  getTeams() async{
+  getTeams(leagueId) async{
     emit(GetTeamsLoading());
 
     try {
-      await teamsRepo.getTeams().then((value) {
+      await teamsRepo.getTeams(leagueId).then((value) {
         if(value != null){
           emit(GetTeamsSuccess(response: value));
         }else{

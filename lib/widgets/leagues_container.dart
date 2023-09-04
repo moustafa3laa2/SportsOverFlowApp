@@ -114,12 +114,13 @@ class LeaguesContainer extends StatelessWidget {
                           ),
                         ),
                         onPressed: () {
-                          context.read<GetTeamsCubit>().getTeams();
+                          context.read<GetTeamsCubit>().getTeams(state.response.result[index].leagueKey);
+
                           Navigator.push(
                             context,
                             MaterialPageRoute<void>(
                               builder: (BuildContext context) =>
-                                  const TeamsTopScorersScreen(),
+                                   TeamsTopScorersScreen(leagueId: state.response.result[index].leagueKey,),
 
                             ),
                           );
