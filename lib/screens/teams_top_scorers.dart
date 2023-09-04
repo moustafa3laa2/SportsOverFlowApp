@@ -613,7 +613,7 @@ class _TeamsTopScorersScreenState extends State<TeamsTopScorersScreen> {
                                             '',
                                         style: const TextStyle(
                                             fontFamily: 'SofiaProBold',
-                                            fontSize: 20,
+                                            fontSize: 18,
                                             color: Color(0xFF38003C)),
                                       ),
                                     ),
@@ -624,7 +624,7 @@ class _TeamsTopScorersScreenState extends State<TeamsTopScorersScreen> {
                                         state.response.result[i].teamName ?? '',
                                         style: const TextStyle(
                                             fontFamily: 'SofiaProBold',
-                                            fontSize: 20,
+                                            fontSize: 18,
                                             color: Color(0xFF04F5FF)),
                                       ),
                                     ),
