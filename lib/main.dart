@@ -8,6 +8,7 @@ import 'package:sports_app_green_eagles/screens/Homepage.dart';
 import 'package:sports_app_green_eagles/screens/auth.dart';
 import 'package:sports_app_green_eagles/screens/countries_screen.dart';
 import 'package:sports_app_green_eagles/screens/login_screen.dart';
+import 'package:sports_app_green_eagles/screens/onBoarding.dart';
 import 'package:sports_app_green_eagles/screens/players.dart';
 import 'package:sports_app_green_eagles/screens/splash.dart';
 import 'package:sports_app_green_eagles/screens/teams_top_scorers.dart';
@@ -52,7 +53,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF38003C)),
           useMaterial3: true,
         ),
-        home:  AuthPage(),
+        home:  splash(),
       ),
     );
   }

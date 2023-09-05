@@ -7,7 +7,7 @@ import 'package:sports_app_green_eagles/widgets/countries_container.dart';
 import 'package:sports_app_green_eagles/widgets/top_bar.dart';
 
 class CountriesScreen extends StatefulWidget {
-  const CountriesScreen({super.key});
+   CountriesScreen({super.key});
 
   @override
   State<CountriesScreen> createState() => _CountriesScreenState();
@@ -15,58 +15,63 @@ class CountriesScreen extends StatefulWidget {
 
 class _CountriesScreenState extends State<CountriesScreen> {
   int index = 0;
+
   final items = <Widget>[
-    Icon(
-      Icons.newspaper,color: Colors.white,
-      size: 30,
-    ),
-    Icon(
+     const Icon(
       Icons.flag_circle,color: Colors.white,
       size: 30,
     ),
+
+    const Icon(
+      Icons.newspaper,color: Colors.white,
+      size: 30,
+    ),
+   
   ];
+
   @override
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       extendBody: true,
-      appBar: AppBar(
-          backgroundColor: const Color(0xFF38003C),
-          leading: const BackButton(
-            color: Colors.white,
-          ),
-          title: BlocBuilder<GetCountriesCubit, GetCountriesState>(
-            builder: (context, state) {
-              if (state is GetCountriesInitial) {
-                return const Text('');
-              } else if (state is GetNewsLoading || state is GetNewsSuccess) {
-                return const Text(
-                  'LATEST NEWS',
-                  style: TextStyle(
-                      fontFamily: "SofiaPro",
-                      color: Colors.white,
-                      fontWeight: FontWeight.w600),
-                );
-              } else if (state is GetCountriesLoading ||
-                  state is GetCountriesSuccess) {
-                return const Text(
-                  'COUNTRIES',
-                  style: TextStyle(
-                      fontFamily: "SofiaPro",
-                      color: Colors.white,
-                      fontWeight: FontWeight.w600),
-                );
-              } else {
-                return const Text(
-                  'ERROR',
-                  style: TextStyle(
-                      fontFamily: "SofiaPro",
-                      color: Colors.white,
-                      fontWeight: FontWeight.w600),
-                );
-              }
-            },
-          )),
+      appBar: TopBar(index: 0, ),
+      // AppBar(
+      //     backgroundColor: const Color(0xFF38003C),
+      //     leading: const BackButton(
+      //       color: Colors.white,
+      //     ),
+      //     title: BlocBuilder<GetCountriesCubit, GetCountriesState>(
+      //       builder: (context, state) {
+      //         if (state is GetCountriesInitial) {
+      //           return const Text('');
+      //         } else if (state is GetNewsLoading || state is GetNewsSuccess) {
+      //           return const Text(
+      //             'LATEST NEWS',
+      //             style: TextStyle(
+      //                 fontFamily: "SofiaPro",
+      //                 color: Colors.white,
+      //                 fontWeight: FontWeight.w600),
+      //           );
+      //         } else if (state is GetCountriesLoading ||
+      //             state is GetCountriesSuccess) {
+      //           return const Text(
+      //             'COUNTRIES',
+      //             style: TextStyle(
+      //                 fontFamily: "SofiaPro",
+      //                 color: Colors.white,
+      //                 fontWeight: FontWeight.w600),
+      //           );
+      //         } else {
+      //           return const Text(
+      //             'ERROR',
+      //             style: TextStyle(
+      //                 fontFamily: "SofiaPro",
+      //                 color: Colors.white,
+      //                 fontWeight: FontWeight.w600),
+      //           );
+      //         }
+      //       },
+      //     )),
 
       bottomNavigationBar: CurvedNavigationBar(
         color: const Color(0xFF38003C),
@@ -76,8 +81,8 @@ class _CountriesScreenState extends State<CountriesScreen> {
         items: items,
         onTap: (index) {
           index == 0
-              ? context.read<GetCountriesCubit>().getNews()
-              : context.read<GetCountriesCubit>().getCountries();
+              ? context.read<GetCountriesCubit>().getCountries()
+              : context.read<GetCountriesCubit>().getNews();
         },
       ),
       

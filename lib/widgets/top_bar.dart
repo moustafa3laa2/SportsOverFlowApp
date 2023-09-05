@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sports_app_green_eagles/screens/auth.dart';
 import 'package:sports_app_green_eagles/screens/login_screen.dart';
 import 'package:sports_app_green_eagles/services/auth_services.dart';
 
@@ -23,7 +24,7 @@ class TopBar extends StatelessWidget implements PreferredSizeWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute<void>(
-                  builder: (BuildContext context) => const LoginScreen(),
+                  builder: (BuildContext context) => const AuthPage(),
                 ),
               );
             },
