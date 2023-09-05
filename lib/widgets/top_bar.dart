@@ -1,18 +1,35 @@
 import 'package:flutter/material.dart';
+import 'package:sports_app_green_eagles/screens/login_screen.dart';
+import 'package:sports_app_green_eagles/services/auth_services.dart';
 
 class TopBar extends StatelessWidget implements PreferredSizeWidget {
   TopBar({super.key, required this.index});
-  List titles = ["COUNTRIES & LATEST NEWS", "Latest News","LEAGUES"];
+  List titles = ["COUNTRIES & LATEST NEWS", "Latest News", "LEAGUES"];
   final int index;
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
   @override
   Widget build(BuildContext context) {
+    AuthService authService = AuthService();
     return AppBar(
         backgroundColor: const Color(0xFF38003C),
         leading: const BackButton(
           color: Colors.white,
         ),
+        actions: [
+          IconButton(
+            onPressed: () {
+              authService.handleSignOut();
+              Navigator.push(
+                context,
+                MaterialPageRoute<void>(
+                  builder: (BuildContext context) => const LoginScreen(),
+                ),
+              );
+            },
+            icon: const Icon(Icons.logout,color: Colors.white,),
+          ),
+        ],
         title: Text(
           titles[index],
           style: const TextStyle(

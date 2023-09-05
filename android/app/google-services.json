@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "428281382475",
+    "project_id": "sportsoverflow-c4a89",
+    "storage_bucket": "sportsoverflow-c4a89.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:428281382475:android:0bb18a801cd748730eafce",
+        "android_client_info": {
+          "package_name": "com.example.sports_app_green_eagles"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "428281382475-hb2psjnf5fgckj4oghprdj8f8ork6q05.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBxHqQ317e3Kg8UXYV7t49jiPROMVoo1-c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "428281382475-hb2psjnf5fgckj4oghprdj8f8ork6q05.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
