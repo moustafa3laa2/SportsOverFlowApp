@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sports_app_green_eagles/data/cubits/DrawerCubit/drawer_cubit.dart';
 import 'package:sports_app_green_eagles/data/cubits/GetCountriesCubit/get_countries_cubit.dart';
 import 'package:sports_app_green_eagles/data/cubits/GetLeaguesCubit/get_leagues_cubit.dart';
 import 'package:sports_app_green_eagles/data/cubits/GetPlayerCubit/get_player_cubit.dart';
@@ -43,6 +44,9 @@ class MyApp extends StatelessWidget {
         ),
          BlocProvider<GetplayerCubit>(
           create: (BuildContext context) => GetplayerCubit(),
+        ),
+        BlocProvider<DrawerCubit>(
+          create: (BuildContext context) => DrawerCubit(),
         ),
       
       ],

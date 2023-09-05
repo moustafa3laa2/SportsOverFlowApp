@@ -3,6 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:sports_app_green_eagles/data/list/HomePageList.dart';
 import 'package:sports_app_green_eagles/screens/countries_screen.dart';
 import 'package:sports_app_green_eagles/screens/onBoarding.dart';
+import 'package:sports_app_green_eagles/widgets/drawer.dart';
+import 'package:sports_app_green_eagles/widgets/top_bar.dart';
 
 class Homepage extends StatelessWidget {
   Homepage({super.key});
@@ -15,47 +17,49 @@ class Homepage extends StatelessWidget {
     var size = MediaQuery.of(context).size;
 
     return Scaffold(
+      appBar: TopBar(barName: 'SPORTSOVERFLOW',),
+      endDrawer: DrawerApp(),
       // backgroundColor: Color(color),
       body: SafeArea(
         child: Column(
           children: [
-            Container(
-              color: Colors.purple,
-              padding: EdgeInsets.symmetric(horizontal: 20),
-              height: size.height * 1 / 10,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                // crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  // InkWell(
-                  //   onTap: () {
-                  //     Navigator.pop(context);
-                  //   },
-                  //   // child: Icon(
-                  //   //   Icons.arrow_back_ios_rounded,
-                  //   //   color: Colors.yellow,
-                  //   // ),
-                  // ),
-                  Row(
-                    // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'SPORTS OVERFlOW',
-                        style: GoogleFonts.adamina(
-                            fontSize: 15, fontWeight: FontWeight.bold),
-                      ),
-                      // Image.asset(
-                      //   'images/white.png',
-                      //   // height:5,
-                      //   // width: 5,
-                      //   color: Colors.white,
-                      // ),
+            // Container(
+            //   color: Colors.purple,
+            //   padding: EdgeInsets.symmetric(horizontal: 20),
+            //   height: size.height * 1 / 10,
+            //   child: Row(
+            //     mainAxisAlignment: MainAxisAlignment.start,
+            //     // crossAxisAlignment: CrossAxisAlignment.center,
+            //     children: [
+            //       // InkWell(
+            //       //   onTap: () {
+            //       //     Navigator.pop(context);
+            //       //   },
+            //       //   // child: Icon(
+            //       //   //   Icons.arrow_back_ios_rounded,
+            //       //   //   color: Colors.yellow,
+            //       //   // ),
+            //       // ),
+            //       Row(
+            //         // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //         children: [
+            //           Text(
+            //             'SPORTS OVERFlOW',
+            //             style: GoogleFonts.adamina(
+            //                 fontSize: 15, fontWeight: FontWeight.bold),
+            //           ),
+            //           // Image.asset(
+            //           //   'images/white.png',
+            //           //   // height:5,
+            //           //   // width: 5,
+            //           //   color: Colors.white,
+            //           // ),
                      
-                    ],
-                  )
-                ],
-              ),
-            ),
+            //         ],
+            //       )
+            //     ],
+            //   ),
+            // ),
             Expanded(
               child: GridView.builder(
                 physics: NeverScrollableScrollPhysics(),

@@ -3,8 +3,10 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sports_app_green_eagles/data/componant/myText.dart';
 import 'package:sports_app_green_eagles/data/componant/squareTile.dart';
+import 'package:sports_app_green_eagles/data/cubits/DrawerCubit/drawer_cubit.dart';
 import 'package:sports_app_green_eagles/screens/Homepage.dart';
 import 'package:flutter/material.dart';
 import 'package:sports_app_green_eagles/services/auth_services.dart';
@@ -23,7 +25,7 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    AuthService authService =AuthService();
+    AuthService authService = AuthService();
     return Scaffold(
         body: SingleChildScrollView(
             child: Container(
@@ -137,7 +139,13 @@ class LoginScreen extends StatelessWidget {
                                             const SizedBox(height: 10),
 
                                             ElevatedButton(
-                                              child: Text(' Send Code',style: TextStyle(fontFamily: 'SofiaProBold',color: Colors.white,fontSize: 18),),
+                                              child: Text(
+                                                ' Send Code',
+                                                style: TextStyle(
+                                                    fontFamily: 'SofiaProBold',
+                                                    color: Colors.white,
+                                                    fontSize: 18),
+                                              ),
                                               style: ElevatedButton.styleFrom(
                                                   shape: RoundedRectangleBorder(
                                                     borderRadius:
@@ -160,12 +168,14 @@ class LoginScreen extends StatelessWidget {
                                                         TextEditingController();
                                                     return AlertDialog(
                                                       title: Text(
-                                                          'Verification Code',style: TextStyle(
-                                                              fontSize: 30,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold,fontFamily: 'SofiaPro'
-                                                            ),),
+                                                        'Verification Code',
+                                                        style: TextStyle(
+                                                            fontSize: 30,
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                            fontFamily:
+                                                                'SofiaPro'),
+                                                      ),
                                                       content: Column(
                                                         mainAxisSize:
                                                             MainAxisSize.min,
@@ -173,11 +183,12 @@ class LoginScreen extends StatelessWidget {
                                                           Text(
                                                             randomNumber,
                                                             style: TextStyle(
-                                                              fontSize: 40,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold,fontFamily: 'SofiaPro'
-                                                            ),
+                                                                fontSize: 40,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                                fontFamily:
+                                                                    'SofiaPro'),
                                                           ),
                                                           SizedBox(height: 20),
                                                           TextField(
@@ -194,7 +205,13 @@ class LoginScreen extends StatelessWidget {
                                                       actions: <Widget>[
                                                         ElevatedButton(
                                                           child: Text(
-                                                            'Verify',style: TextStyle(fontFamily: 'SofiaProBold',fontSize: 18,color: Colors.white),
+                                                            'Verify',
+                                                            style: TextStyle(
+                                                                fontFamily:
+                                                                    'SofiaProBold',
+                                                                fontSize: 18,
+                                                                color: Colors
+                                                                    .white),
                                                           ),
                                                           style: ElevatedButton
                                                               .styleFrom(
@@ -238,8 +255,7 @@ class LoginScreen extends StatelessWidget {
                                                                         'Wrong'),
                                                                     content: Text(
                                                                         'This number not vaild '),
-                                                                    actions: <
-                                                                        Widget>[
+                                                                    actions: <Widget>[
                                                                       ElevatedButton(
                                                                         child: Text(
                                                                             'Ok'),
@@ -262,14 +278,22 @@ class LoginScreen extends StatelessWidget {
                                                 );
                                               },
                                             ),
-                                            SizedBox(
+                                            const SizedBox(
                                               height: 20,
                                             ),
 
-
-                                             InkWell(
-            onTap: () => authService.handleSignIn(),
-            child: Image.asset('assets/images/google.png',height: 30,width: 30,))
+                                            InkWell(
+                                                onTap: () {
+                                                  authService.handleSignIn();
+                                                  context
+                                                      .read<DrawerCubit>()
+                                                      .getSignINEmail();
+                                                },
+                                                child: Image.asset(
+                                                  'assets/images/google.png',
+                                                  height: 30,
+                                                  width: 30,
+                                                ))
 
                                             // ElevatedButton(
                                             //     onPressed: () {},

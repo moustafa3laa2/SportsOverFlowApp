@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sports_app_green_eagles/screens/searchplayer.dart';
 import 'package:sports_app_green_eagles/data/cubits/GetPlayerCubit/get_player_cubit.dart';
 import 'package:share/share.dart';
+import 'package:sports_app_green_eagles/widgets/drawer.dart';
+import 'package:sports_app_green_eagles/widgets/top_bar.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 
@@ -30,27 +32,8 @@ class _PlayersState extends State<Players> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: const Icon(Icons.arrow_back_outlined, color: Colors.white),
-        ),
-        actions: [
-          IconButton(
-              onPressed: () {
-                showSearch(context: context, delegate: searchplayer());
-              },
-              icon: const Icon(Icons.search))
-        ],
-        backgroundColor: const Color(0xFF38003C),
-        title: Text(
-          widget.teamname,
-          style: const TextStyle(color: Colors.white, fontFamily: 'SofiaProBold'),
-        ),
-        centerTitle: true,
-      ),
+      endDrawer: DrawerApp(),
+      appBar: TopBar(barName: widget.teamname),
       body: Column(
         children: [
           const SizedBox(
