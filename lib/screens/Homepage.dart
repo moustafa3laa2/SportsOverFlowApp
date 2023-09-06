@@ -9,7 +9,7 @@ import 'package:sports_app_green_eagles/widgets/drawer.dart';
 import 'package:sports_app_green_eagles/widgets/top_bar.dart';
 
 class Homepage extends StatelessWidget {
-  Homepage({super.key});
+  const Homepage({super.key});
 
   @override
   Widget build(BuildContext context) {

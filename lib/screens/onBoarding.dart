@@ -48,6 +48,7 @@ class _OnBoardingState extends State<OnBoarding> {
             padding: const EdgeInsets.all(16.0),
             child: InkWell(
               onTap: () {
+                _pageController.dispose();
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(

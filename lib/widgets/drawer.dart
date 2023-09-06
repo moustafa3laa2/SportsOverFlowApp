@@ -9,6 +9,7 @@ import 'package:sports_app_green_eagles/services/auth_services.dart';
 
 class DrawerApp extends StatelessWidget {
   const DrawerApp({super.key});
+  
 
   @override
   Widget build(BuildContext context) {
@@ -40,35 +41,24 @@ class DrawerApp extends StatelessWidget {
                 if (state is DrawerSignInEmail) {
                   return ListTile(
                     leading: const Icon(Icons.email),
-                    title: Text(
+                    title: const Text('SIGN IN WITH',style: TextStyle( fontSize: 15, fontFamily: 'SofiaProBold'),),
+                    subtitle: Text(
                       FirebaseAuth.instance.currentUser!.email.toString(),
                       style: const TextStyle(
                           fontSize: 15, fontFamily: 'SofiaProBold'),
                     ),
-                    onTap: () {},
                   );
-                } else if (state is DrawerSignInPhone) {
-                  return ListTile(
+                } else  {
+                  return   ListTile(
                     leading: const Icon(Icons.phone_android),
-                    title: const Text(
-                      'sign in',
-                      style:
-                          TextStyle(fontSize: 20, fontFamily: 'SofiaProBold'),
-                    ),
-                    onTap: () {},
-                  );
-                } else {
-                  return ListTile(
-                    leading: const Icon(Icons.email),
-                    title: Text(
-                      FirebaseAuth.instance.currentUser!.email.toString(),
+                    title: const Text('SIGN IN WITH',style: TextStyle( fontSize: 15, fontFamily: 'SofiaProBold'),),
+                    subtitle: Text(
+                      'SIGN IN WITH PHONE',
                       style: const TextStyle(
                           fontSize: 15, fontFamily: 'SofiaProBold'),
                     ),
-                    onTap: () {},
                   );
-                }
-              },
+              }}
             ),
             ListTile(
               leading: const Icon(Icons.logout),

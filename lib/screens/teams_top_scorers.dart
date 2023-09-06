@@ -58,7 +58,9 @@ class _TeamsTopScorersScreenState extends State<TeamsTopScorersScreen> {
             } else if (state is GetTopLoading) {
               return const Text('');
             } else {
-              return const Text('Error');
+              return const Center(child:  Text('Not Found' ,style: TextStyle(fontSize: 25,
+                  fontFamily: 'SofiaProBold',
+                  color: Color(0xFFFFFFFF),),));
             }
           },
         ),
@@ -262,9 +264,9 @@ class _TeamsTopScorersScreenState extends State<TeamsTopScorersScreen> {
                   ],
                 );
               } else {
-                return Center(
-                  child: Text('error'),
-                );
+                return const Center(child:  Text('Not Found' ,style: TextStyle(fontSize: 25,
+                  fontFamily: 'SofiaProBold',
+                  ),));
               }
             },
           ),
@@ -684,9 +686,9 @@ class _TeamsTopScorersScreenState extends State<TeamsTopScorersScreen> {
                   ],
                 ));
               } else {
-                return const Center(
-                  child: Text('Error'),
-                );
+                return const Center(child:  Text('Not Found' ,style: TextStyle(fontSize: 25,
+                  fontFamily: 'SofiaProBold',
+                  ),));
               }
             },
           ),

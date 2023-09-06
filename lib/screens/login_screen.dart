@@ -13,8 +13,8 @@ import 'package:sports_app_green_eagles/services/auth_services.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
-  final usernameController = TextEditingController();
   final passwordController = TextEditingController();
+
 
   double _sigmaX = 5; // from 0-10
   double _sigmaY = 5; // from 0-10
@@ -22,6 +22,8 @@ class LoginScreen extends StatelessWidget {
   double _width = 350;
   double _height = 300;
   final _formKey = GlobalKey<FormState>();
+  final TextEditingController usernameController = TextEditingController();
+
 
   @override
   Widget build(BuildContext context) {
@@ -64,9 +66,9 @@ class LoginScreen extends StatelessWidget {
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 10),
                                     decoration: BoxDecoration(
-                                        color: Color.fromRGBO(0, 0, 0, 1)
+                                        color: const Color.fromRGBO(0, 0, 0, 1)
                                             .withOpacity(_opacity),
-                                        borderRadius: BorderRadius.all(
+                                        borderRadius: const BorderRadius.all(
                                             Radius.circular(30))),
                                     width:
                                         MediaQuery.of(context).size.width * 1,
@@ -80,15 +82,57 @@ class LoginScreen extends StatelessWidget {
                                           mainAxisAlignment:
                                               MainAxisAlignment.center,
                                           children: [
-                                            // username textfield
-                                            MyTextField(
+                                            TextFormField(
                                               controller: usernameController,
-                                              hintText: 'your phone',
-                                              obscureText: false,
+                                              validator: (value) {
+                                                if (value!.isEmpty) {
+                                                  return "Username should not be empty";
+                                                } else if (value.length != 11) {
+                                                  return "Number should be 11 digits";
+                                                } else if (!RegExp(r'^01[0-2]\d{8}$').hasMatch(value)) {
+                                                  return "Number should start with 01";
+                                                }
+                                                return null; // Return null if there are no validation errors.
+                                              },
+                                              decoration: const InputDecoration(
+                                                border: OutlineInputBorder(
+                                                  //borderRadius: BorderRadius.circular(50)
+                                                ),
+                                                icon: Icon(Icons.phone_android,color: Colors.purple,),
+                                                labelText: 'Enter your phone number',
+                                                hintText: '+20 123 4567 910',
+                                                errorStyle: TextStyle(
+                                                  color: Colors.white,
+                                                ),
+                                                focusedBorder: OutlineInputBorder(
+                                                  borderSide: BorderSide(
+                                                    color: Colors.white, // Customize border color when focused to white
+                                                  ),
+                                                ),
+                                                enabledBorder: OutlineInputBorder(
+                                                  borderSide: BorderSide(
+                                                    color: Colors.white, // Customize border color when not focused to white
+                                                  ),
+                                                ),
+
+                                                labelStyle: TextStyle(
+                                                  color: Colors.white,
+                                                ),
+                                                hintStyle: TextStyle(
+                                                  color: Colors.white,
+                                                ),
+                                              ),
+                                              style: const TextStyle(
+                                                color: Colors.white, // Set the text color to white
+                                              ),
                                             ),
-                                            SizedBox(
+
+
+                                            const SizedBox(
                                               height: 10,
                                             ),
+
+
 
                                             const SizedBox(height: 10),
 
@@ -107,6 +151,155 @@ class LoginScreen extends StatelessWidget {
                                             // }),
 
                                             const SizedBox(height: 10),
+                                            ElevatedButton(
+                                              child: Text(
+                                                ' Send Code',
+                                                style: TextStyle(
+                                                    fontFamily: 'SofiaProBold',
+                                                    color: Colors.white,
+                                                    fontSize: 18),
+                                              ),
+                                              style: ElevatedButton.styleFrom(
+                                                  shape: RoundedRectangleBorder(
+                                                    borderRadius:
+                                                    BorderRadius.circular(
+                                                        25.0), // Adjust the radius as needed
+                                                  ),
+                                                  backgroundColor:
+                                                  Colors.purple,
+                                                  elevation: 10,
+                                                  minimumSize: Size(130, 40)),
+                                              onPressed: () {
+                                                if(_formKey.currentState!.validate()){
+                                                  String randomNumber =
+                                                  generateRandomNumber();
+                                                  showDialog(
+                                                    context: context,
+                                                    builder:
+                                                        (BuildContext context) {
+                                                      TextEditingController
+                                                      _textEditingController =
+                                                      TextEditingController();
+                                                      return AlertDialog(
+                                                        title: Text(
+                                                          'Verification Code',
+                                                          style: TextStyle(
+                                                              fontSize: 30,
+                                                              fontWeight:
+                                                              FontWeight.bold,
+                                                              fontFamily:
+                                                              'SofiaPro'),
+                                                        ),
+                                                        content: Column(
+                                                          mainAxisSize:
+                                                          MainAxisSize.min,
+                                                          children: [
+                                                            Text(
+                                                              randomNumber,
+                                                              style: TextStyle(
+                                                                  fontSize: 40,
+                                                                  fontWeight:
+                                                                  FontWeight
+                                                                      .bold,
+                                                                  fontFamily:
+                                                                  'SofiaPro'),
+                                                            ),
+                                                            SizedBox(height: 20),
+                                                            TextField(
+                                                              controller:
+                                                              _textEditingController,
+                                                              decoration:
+                                                              InputDecoration(
+                                                                labelText:
+                                                                ' Please Enter 4 Digit pin ',
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                        actions: <Widget>[
+                                                          ElevatedButton(
+                                                            child: Text(
+                                                              'Verify',
+                                                              style: TextStyle(
+                                                                  fontFamily:
+                                                                  'SofiaProBold',
+                                                                  fontSize: 18,
+                                                                  color: Colors
+                                                                      .white),
+                                                            ),
+                                                            style: ElevatedButton
+                                                                .styleFrom(
+                                                                shape:
+                                                                RoundedRectangleBorder(
+                                                                  borderRadius:
+                                                                  BorderRadius.circular(
+                                                                      25.0), // Adjust the radius as needed
+                                                                ),
+                                                                backgroundColor:
+                                                                Colors
+                                                                    .purple,
+                                                                elevation: 10,
+                                                                minimumSize:
+                                                                const Size(130,
+                                                                    40)),
+                                                            onPressed: () {
+                                                              String enteredNumber = _textEditingController.text;
+                                                              String phoneNumber = usernameController.text;
+
+
+                                                              if (enteredNumber == randomNumber) {
+                                                                Navigator.pushReplacement(
+                                                                  context,
+                                                                  MaterialPageRoute(
+                                                                    builder:
+                                                                        (context) =>
+                                                                        Homepage(),
+                                                                  ),
+                                                                );
+
+                                                              } else {
+                                                                showDialog(
+                                                                  context:
+                                                                  context,
+                                                                  builder:
+                                                                      (BuildContext
+                                                                  context) {
+                                                                    return AlertDialog(
+                                                                      title: const Text(
+                                                                          'Wrong'),
+                                                                      content: const Text(
+                                                                          'This number not vaild '),
+                                                                      actions: <Widget>[
+                                                                        ElevatedButton(
+                                                                          child: const Text(
+                                                                              'Ok'),
+                                                                          onPressed:
+                                                                              () {
+                                                                            Navigator.of(context)
+                                                                                .pop();
+                                                                          },
+                                                                        ),
+                                                                      ],
+                                                                    );
+                                                                  },
+                                                                );
+                                                              }
+                                                            },
+                                                          ),
+                                                        ],
+                                                      );
+                                                    },
+                                                  );
+                                                }
+
+
+                                              },
+                                            )
+                                            ,const SizedBox(height: 20,),
+                                            // Somewhere in your code, for example, in a button's onPressed callback:
+
+
+
 
                                             // or continue with
                                             Row(
@@ -138,146 +331,7 @@ class LoginScreen extends StatelessWidget {
 
                                             const SizedBox(height: 10),
 
-                                            ElevatedButton(
-                                              child: Text(
-                                                ' Send Code',
-                                                style: TextStyle(
-                                                    fontFamily: 'SofiaProBold',
-                                                    color: Colors.white,
-                                                    fontSize: 18),
-                                              ),
-                                              style: ElevatedButton.styleFrom(
-                                                  shape: RoundedRectangleBorder(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            25.0), // Adjust the radius as needed
-                                                  ),
-                                                  backgroundColor:
-                                                      Colors.purple,
-                                                  elevation: 10,
-                                                  minimumSize: Size(130, 40)),
-                                              onPressed: () {
-                                                String randomNumber =
-                                                    generateRandomNumber();
-                                                showDialog(
-                                                  context: context,
-                                                  builder:
-                                                      (BuildContext context) {
-                                                    TextEditingController
-                                                        _textEditingController =
-                                                        TextEditingController();
-                                                    return AlertDialog(
-                                                      title: Text(
-                                                        'Verification Code',
-                                                        style: TextStyle(
-                                                            fontSize: 30,
-                                                            fontWeight:
-                                                                FontWeight.bold,
-                                                            fontFamily:
-                                                                'SofiaPro'),
-                                                      ),
-                                                      content: Column(
-                                                        mainAxisSize:
-                                                            MainAxisSize.min,
-                                                        children: [
-                                                          Text(
-                                                            randomNumber,
-                                                            style: TextStyle(
-                                                                fontSize: 40,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold,
-                                                                fontFamily:
-                                                                    'SofiaPro'),
-                                                          ),
-                                                          SizedBox(height: 20),
-                                                          TextField(
-                                                            controller:
-                                                                _textEditingController,
-                                                            decoration:
-                                                                InputDecoration(
-                                                              labelText:
-                                                                  ' Please Enter 4 Digit pin ',
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                      actions: <Widget>[
-                                                        ElevatedButton(
-                                                          child: Text(
-                                                            'Verify',
-                                                            style: TextStyle(
-                                                                fontFamily:
-                                                                    'SofiaProBold',
-                                                                fontSize: 18,
-                                                                color: Colors
-                                                                    .white),
-                                                          ),
-                                                          style: ElevatedButton
-                                                              .styleFrom(
-                                                                  shape:
-                                                                      RoundedRectangleBorder(
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            25.0), // Adjust the radius as needed
-                                                                  ),
-                                                                  backgroundColor:
-                                                                      Colors
-                                                                          .purple,
-                                                                  elevation: 10,
-                                                                  minimumSize:
-                                                                      Size(130,
-                                                                          40)),
-                                                          onPressed: () {
-                                                            String
-                                                                enteredNumber =
-                                                                _textEditingController
-                                                                    .text;
-                                                            if (enteredNumber ==
-                                                                randomNumber) {
-                                                              Navigator.push(
-                                                                context,
-                                                                MaterialPageRoute(
-                                                                  builder:
-                                                                      (context) =>
-                                                                          Homepage(),
-                                                                ),
-                                                              );
-                                                            } else {
-                                                              showDialog(
-                                                                context:
-                                                                    context,
-                                                                builder:
-                                                                    (BuildContext
-                                                                        context) {
-                                                                  return AlertDialog(
-                                                                    title: Text(
-                                                                        'Wrong'),
-                                                                    content: Text(
-                                                                        'This number not vaild '),
-                                                                    actions: <Widget>[
-                                                                      ElevatedButton(
-                                                                        child: Text(
-                                                                            'Ok'),
-                                                                        onPressed:
-                                                                            () {
-                                                                          Navigator.of(context)
-                                                                              .pop();
-                                                                        },
-                                                                      ),
-                                                                    ],
-                                                                  );
-                                                                },
-                                                              );
-                                                            }
-                                                          },
-                                                        ),
-                                                      ],
-                                                    );
-                                                  },
-                                                );
-                                              },
-                                            ),
+
                                             const SizedBox(
                                               height: 20,
                                             ),
@@ -360,17 +414,17 @@ class LoginScreen extends StatelessWidget {
 //   Widget build(BuildContext context) {
 //     AuthService authService =AuthService();
 //     return Scaffold(
-      
+
 //       body: Column(
 //         mainAxisAlignment: MainAxisAlignment.center,
 //         children: [
 //           const SizedBox(width: double.infinity,),
 //            TextFormField(
-                       
+
 //                         decoration: InputDecoration(
 //                           prefixIcon: const Icon(Icons.phone_android),
 //                           hintText: "(+20) 012 3456 789",
-                          
+
 //                           enabledBorder: OutlineInputBorder(
 //                             borderSide: const BorderSide(
 //                               color: Colors.grey,
@@ -388,7 +442,7 @@ class LoginScreen extends StatelessWidget {
 //                         ),
 //                       ),
 //                       SizedBox(height: MediaQuery.of(context).size.height * 0.02),
-          
+
 //           InkWell(
 //             onTap: () => authService.handleSignIn(),
 //             child: Image.asset('assets/images/google.png',height: 30,width: 30,))

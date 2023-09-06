@@ -52,11 +52,11 @@ class GetTeamsCubit extends Cubit<GetTeamsState> {
   
   }
   
-  showTextField() async{
+  // showTextField() async{
 
-    emit(ShowTextField());
+  //   emit(ShowTextField());
 
 
 
-  }
+  // }
 }

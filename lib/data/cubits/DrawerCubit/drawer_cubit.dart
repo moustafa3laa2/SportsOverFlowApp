@@ -12,7 +12,7 @@ class DrawerCubit extends Cubit<DrawerState> {
   }
 
   getSignINPhone() async {
-
+    
     emit(DrawerSignInPhone());
   }
 }
