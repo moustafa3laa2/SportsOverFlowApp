@@ -6,3 +6,4 @@ sealed class DrawerState {}
 final class DrawerInitial extends DrawerState {}
 final class DrawerSignInEmail extends DrawerState {}
 final class DrawerSignInPhone extends DrawerState {}
+final class DrawerError extends DrawerState {}

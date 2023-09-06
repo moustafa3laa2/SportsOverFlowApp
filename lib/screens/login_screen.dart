@@ -248,6 +248,7 @@ class LoginScreen extends StatelessWidget {
 
 
                                                               if (enteredNumber == randomNumber) {
+                                                                context.read<DrawerCubit>().getSignINPhone();
                                                                 Navigator.pushReplacement(
                                                                   context,
                                                                   MaterialPageRoute(
@@ -266,17 +267,17 @@ class LoginScreen extends StatelessWidget {
                                                                   context) {
                                                                     return AlertDialog(
                                                                       title: const Text(
-                                                                          'Wrong'),
+                                                                          'Wrong',style: TextStyle(fontWeight: FontWeight.bold),),
                                                                       content: const Text(
                                                                           'This number not vaild '),
                                                                       actions: <Widget>[
                                                                         ElevatedButton(
+                                                                          style: ElevatedButton.styleFrom(backgroundColor: Colors.purple),
                                                                           child: const Text(
-                                                                              'Ok'),
+                                                                              'Ok',style: TextStyle(color: Colors.white),),
                                                                           onPressed:
                                                                               () {
-                                                                            Navigator.of(context)
-                                                                                .pop();
+                                                                            Navigator.of(context).popUntil((route) => route.isFirst);
                                                                           },
                                                                         ),
                                                                       ],
