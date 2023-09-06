@@ -38,7 +38,7 @@ class DrawerApp extends StatelessWidget {
             ),
             BlocBuilder<DrawerCubit, DrawerState>(
               builder: (context, state) {
-                if (state is DrawerSignInEmail) {
+                if (state is DrawerSignInEmail || state is DrawerInitial) {
                   return ListTile(
                     leading: const Icon(Icons.email),
                     title: const Text('SIGN IN WITH',style: TextStyle( fontSize: 15, fontFamily: 'SofiaProBold'),),

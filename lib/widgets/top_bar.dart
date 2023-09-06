@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:sports_app_green_eagles/screens/auth.dart';
 import 'package:sports_app_green_eagles/screens/login_screen.dart';
@@ -16,7 +18,10 @@ class TopBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       elevation: 0,
         backgroundColor: const Color(0xFF38003C),
-        leading: const BackButton(
+        leading:  BackButton(
+          onPressed: () {
+           exit(0);
+          },
         color: Colors.white,
         
         ),
