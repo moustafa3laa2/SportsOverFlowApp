@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:sports_app_green_eagles/data/cubits/GetCountriesCubit/get_countries_cubit.dart';
 import 'package:sports_app_green_eagles/data/list/HomePageList.dart';
 import 'package:sports_app_green_eagles/screens/countries_screen.dart';
 import 'package:sports_app_green_eagles/screens/onBoarding.dart';
@@ -85,12 +87,12 @@ class Homepage extends StatelessWidget {
                                   content: Text('unavailable now'),
                                 );
                               })
-                          : Navigator.push(
+                          : {Navigator.push(
                               context,
                               MaterialPageRoute(
                                 builder: (context) => CountriesScreen(),
                               ),
-                            );
+                            ),context.read<GetCountriesCubit>().getCountries()};
                     },
                     child: Container(
                       margin: EdgeInsets.all(10),

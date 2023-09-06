@@ -12,9 +12,8 @@ class DrawerApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-     AuthService authService = AuthService();
+    AuthService authService = AuthService();
     return Drawer(
-      
       child: Container(
         color: Colors.white,
         child: ListView(
@@ -23,63 +22,76 @@ class DrawerApp extends StatelessWidget {
               child: Column(
                 children: [
                   Center(
-                    child: Image(image: AssetImage('assets/images/purple.png'),width: 100,height: 100,),),
-                Text(
-                  'SPORTS OVERFLOW',
-                  style: TextStyle(fontSize: 20, fontFamily: 'SofiaProBold'),
-                ),
+                    child: Image(
+                      image: AssetImage('assets/images/purple.png'),
+                      width: 100,
+                      height: 100,
+                    ),
+                  ),
+                  Text(
+                    'SPORTS OVERFLOW',
+                    style: TextStyle(fontSize: 20, fontFamily: 'SofiaProBold'),
+                  ),
                 ],
               ),
-                
             ),
             BlocBuilder<DrawerCubit, DrawerState>(
               builder: (context, state) {
-                if(state is DrawerSignInEmail)
-                {
+                if (state is DrawerSignInEmail) {
                   return ListTile(
-                  leading: const Icon(Icons.email),
-                  title: Text(
-                    FirebaseAuth.instance.currentUser!.email.toString(),
-                    style: const TextStyle(fontSize: 15, fontFamily: 'SofiaProBold'),
-                  ),
-                  onTap: () {},
-                );
-                }else if(state is DrawerSignInPhone){
+                    leading: const Icon(Icons.email),
+                    title: Text(
+                      FirebaseAuth.instance.currentUser!.email.toString(),
+                      style: const TextStyle(
+                          fontSize: 15, fontFamily: 'SofiaProBold'),
+                    ),
+                    onTap: () {},
+                  );
+                } else if (state is DrawerSignInPhone) {
                   return ListTile(
-              leading: const Icon(Icons.phone_android),
-              title: const Text(
-                'sign in',
-                style: TextStyle(fontSize: 20, fontFamily: 'SofiaProBold'),
-              ),
-              onTap: () {},
-            );
-                }else{
+                    leading: const Icon(Icons.phone_android),
+                    title: const Text(
+                      'sign in',
+                      style:
+                          TextStyle(fontSize: 20, fontFamily: 'SofiaProBold'),
+                    ),
+                    onTap: () {},
+                  );
+                } else {
                   return ListTile(
-                  leading: const Icon(Icons.email),
-                  title: Text(
-                    FirebaseAuth.instance.currentUser!.email.toString(),
-                    style: const TextStyle(fontSize: 15, fontFamily: 'SofiaProBold'),
-                  ),
-                  onTap: () {},
-                );
+                    leading: const Icon(Icons.email),
+                    title: Text(
+                      FirebaseAuth.instance.currentUser!.email.toString(),
+                      style: const TextStyle(
+                          fontSize: 15, fontFamily: 'SofiaProBold'),
+                    ),
+                    onTap: () {},
+                  );
                 }
-                
               },
             ),
-            
             ListTile(
               leading: const Icon(Icons.logout),
               title: const Text(
                 'Logout',
                 style: TextStyle(fontSize: 20, fontFamily: 'SofiaProBold'),
               ),
-              onTap: () {authService.handleSignOut();
-              Navigator.push(
-                context,
-                MaterialPageRoute<void>(
-                  builder: (BuildContext context) => const AuthPage(),
-                ),
-              );},
+              onTap: () {
+                authService.handleSignOut();
+
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (context) => const AuthPage()),
+                  (route) => false,
+                );
+               
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute<void>(
+                //     builder: (BuildContext context) => const AuthPage(),
+                //   ),
+                // );
+              },
             ),
           ],
         ),

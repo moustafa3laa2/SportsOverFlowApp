@@ -2,9 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:sports_app_green_eagles/screens/auth.dart';
-import 'package:sports_app_green_eagles/screens/login_screen.dart';
+// import 'package:flutter/src/widgets/placeholder.dart';
+// import 'package:sports_app_green_eagles/screens/auth.dart';
+// import 'package:sports_app_green_eagles/screens/login_screen.dart';
 import 'package:sports_app_green_eagles/screens/onBoarding.dart';
 
 class splash extends StatefulWidget {
@@ -26,26 +26,26 @@ class _splashState extends State<splash> with SingleTickerProviderStateMixin {
 
     _animationController = AnimationController(
       vsync: this,
-      duration: Duration(seconds: 2),
+      duration: const Duration(seconds: 2),
     );
 
     _imageAnimation = Tween<double>(begin: 0, end: 1).animate(
       CurvedAnimation(
         parent: _animationController,
-        curve: Interval(0, 0.5, curve: Curves.easeIn),
+        curve: const Interval(0, 0.5, curve: Curves.easeIn),
       ),
     );
 
     _textAnimation = Tween<double>(begin: 0, end: 1).animate(
       CurvedAnimation(
         parent: _animationController,
-        curve: Interval(0.5, 1, curve: Curves.easeIn),
+        curve: const Interval(0.5, 1, curve: Curves.easeIn),
       ),
     );
 
     _animationController.forward();
 
-    Future.delayed(Duration(seconds: 4), () {
+    Future.delayed(const Duration(seconds: 4), () {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
@@ -67,7 +67,7 @@ class _splashState extends State<splash> with SingleTickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage('assets/images/splashwp.jpg'),
             fit: BoxFit.cover,
@@ -88,13 +88,13 @@ class _splashState extends State<splash> with SingleTickerProviderStateMixin {
                         'assets/images/white.png',
                         height: 220,
                         width: 200,
-                        color: Color.fromARGB(255, 53, 4, 61),
+                        color: const Color.fromARGB(255, 53, 4, 61),
                       ),
                     ),
                   );
                 },
               ),
-              SizedBox(
+              const SizedBox(
                 height: 220,
               ),
               AnimatedBuilder(
@@ -105,7 +105,7 @@ class _splashState extends State<splash> with SingleTickerProviderStateMixin {
                     child: Transform.translate(
                       offset: Offset(0, 20 * (1 - _textAnimation.value)),
                       child: RichText(
-                        text: TextSpan(
+                        text: const TextSpan(
                           children: [
                             TextSpan(
                               text: 'SPORTS ',

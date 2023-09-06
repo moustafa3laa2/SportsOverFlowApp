@@ -136,7 +136,7 @@ class _CountriesScreenState extends State<CountriesScreen> {
                               image: DecorationImage(
                                 image: NetworkImage(
                                   state.response.articles[i].urlToImage ??
-                                      "images/person1.png",
+                                      "",
                                 ),
                                 fit: BoxFit.cover,
                               ),
