@@ -20,7 +20,7 @@ class Homepage extends StatelessWidget {
 
     return Scaffold(
       appBar: TopBar(barName: 'SPORTSOVERFLOW',),
-      endDrawer: const DrawerApp(),
+      endDrawer:  DrawerApp(),
       // backgroundColor: Color(color),
       body: SafeArea(
         child: Column(
