@@ -87,11 +87,11 @@ class LoginScreen extends StatelessWidget {
                                               controller: usernameController,
                                               validator: (value) {
                                                 if (value!.isEmpty) {
-                                                  return "Username should not be empty";
+                                                  return "phone should not be empty";
                                                 } else if (value.length != 11) {
                                                   return "Number should be 11 digits";
-                                                } else if (!RegExp(r'^01[0-2]\d{8}$').hasMatch(value)) {
-                                                  return "Number should start with 01";
+                                                } else if (!value.contains("(+20)")) {
+                                                  return "Number should start with (+20)";
                                                 }
                                                 return null; // Return null if there are no validation errors.
                                               },
