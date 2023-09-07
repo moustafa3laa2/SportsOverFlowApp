@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sports_app_green_eagles/data/componant/myText.dart';
 import 'package:sports_app_green_eagles/data/componant/squareTile.dart';
 import 'package:sports_app_green_eagles/data/cubits/DrawerCubit/drawer_cubit.dart';
@@ -86,11 +87,11 @@ class LoginScreen extends StatelessWidget {
                                               controller: usernameController,
                                               validator: (value) {
                                                 if (value!.isEmpty) {
-                                                  return "Username should not be empty";
+                                                  return "phone should not be empty";
                                                 } else if (value.length != 11) {
                                                   return "Number should be 11 digits";
-                                                } else if (!RegExp(r'^01[0-2]\d{8}$').hasMatch(value)) {
-                                                  return "Number should start with 01";
+                                                } else if (!value.contains("(+20)")) {
+                                                  return "Number should start with (+20)";
                                                 }
                                                 return null; // Return null if there are no validation errors.
                                               },
@@ -242,10 +243,14 @@ class LoginScreen extends StatelessWidget {
                                                                 minimumSize:
                                                                 const Size(130,
                                                                     40)),
-                                                            onPressed: () {
+                                                            onPressed: () async{
                                                               String enteredNumber = _textEditingController.text;
-                                                              String phoneNumber = usernameController.text;
-
+                                                              savenumber( )  async {
+                                                                String phoneNumber = usernameController.text;
+                                                                final SharedPreferences prefs = await SharedPreferences.getInstance();
+                                                                await prefs.setString('action', phoneNumber);
+                                                              }
+                                                              savenumber();
 
                                                               if (enteredNumber == randomNumber) {
                                                                 context.read<DrawerCubit>().getSignINPhone();

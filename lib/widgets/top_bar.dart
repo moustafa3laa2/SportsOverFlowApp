@@ -25,20 +25,7 @@ class TopBar extends StatelessWidget implements PreferredSizeWidget {
         color: Colors.white,
         
         ),
-        // actions: [
-        //   IconButton(
-        //     onPressed: () {
-        //       authService.handleSignOut();
-        //       Navigator.push(
-        //         context,
-        //         MaterialPageRoute<void>(
-        //           builder: (BuildContext context) => const AuthPage(),
-        //         ),
-        //       );
-        //     },
-        //     icon: const Icon(Icons.logout,color: Colors.white,),
-        //   ),
-        // ],
+       
         title: Text(
          barName,
           style: const TextStyle(

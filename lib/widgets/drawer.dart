@@ -3,13 +3,21 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sports_app_green_eagles/data/cubits/DrawerCubit/drawer_cubit.dart';
 import 'package:sports_app_green_eagles/screens/auth.dart';
 import 'package:sports_app_green_eagles/services/auth_services.dart';
 
 class DrawerApp extends StatelessWidget {
-  const DrawerApp({super.key});
-  
+  DrawerApp({Key? key});
+
+  // Declare phone as a Future<String> to handle the asynchronous operation
+  Future<String> phone = savenumber();
+
+  static Future<String> savenumber() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getString('action') ?? "";
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,30 +43,69 @@ class DrawerApp extends StatelessWidget {
                   ),
                 ],
               ),
+
             ),
             BlocBuilder<DrawerCubit, DrawerState>(
               builder: (context, state) {
                 if (state is DrawerSignInEmail || state is DrawerInitial) {
                   return ListTile(
                     leading: const Icon(Icons.email),
-                    title: const Text('SIGN IN WITH',style: TextStyle( fontSize: 15, fontFamily: 'SofiaProBold'),),
+                    title: const Text(
+                      'SIGN IN WITH',
+                      style: TextStyle(fontSize: 15, fontFamily: 'SofiaProBold'),
+                    ),
                     subtitle: Text(
                       FirebaseAuth.instance.currentUser!.email.toString(),
                       style: const TextStyle(
-                          fontSize: 15, fontFamily: 'SofiaProBold'),
+                        fontSize: 15,
+                        fontFamily: 'SofiaProBold',
+                      ),
                     ),
                   );
-                } else  {
-                  return   ListTile(
+                } else if (state is DrawerSignInPhone) {
+                  return ListTile(
                     leading: const Icon(Icons.phone_android),
-                    title: const Text('SIGN IN WITH',style: TextStyle( fontSize: 15, fontFamily: 'SofiaProBold'),),
-                    subtitle: Text(
-                      'SIGN IN WITH PHONE',
-                      style: const TextStyle(
-                          fontSize: 15, fontFamily: 'SofiaProBold'),
+                    title: const Text(
+                      'SIGN IN WITH',
+                      style: TextStyle(fontSize: 15, fontFamily: 'SofiaProBold'),
+                    ),
+                    // Use a FutureBuilder to handle the asynchronous operation
+                    subtitle: FutureBuilder<String>(
+                      future: phone,
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState == ConnectionState.waiting) {
+                          return Text(
+                            "Loading...",
+                            style: TextStyle(
+                              fontSize: 15,
+                              fontFamily: 'SofiaProBold',
+                            ),
+                          );
+                        } else if (snapshot.hasError) {
+                          return Text(
+                            "Error",
+                            style: TextStyle(
+                              fontSize: 15,
+                              fontFamily: 'SofiaProBold',
+                            ),
+                          );
+                        } else {
+                          // Use the retrieved phone number from the snapshot
+                          return Text(
+                            snapshot.data ?? "555",
+                            style: TextStyle(
+                              fontSize: 15,
+                              fontFamily: 'SofiaProBold',
+                            ),
+                          );
+                        }
+                      },
                     ),
                   );
-              }}
+                } else {
+                  return Text("Error");
+                }
+              },
             ),
             ListTile(
               leading: const Icon(Icons.logout),
@@ -72,15 +119,8 @@ class DrawerApp extends StatelessWidget {
                 Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(builder: (context) => const AuthPage()),
-                  (route) => false,
+                      (route) => false,
                 );
-               
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute<void>(
-                //     builder: (BuildContext context) => const AuthPage(),
-                //   ),
-                // );
               },
             ),
           ],
@@ -89,3 +129,4 @@ class DrawerApp extends StatelessWidget {
     );
   }
 }
+
