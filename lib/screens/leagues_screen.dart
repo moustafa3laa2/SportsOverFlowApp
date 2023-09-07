@@ -12,7 +12,17 @@ class LeaguesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       endDrawer: DrawerApp(),
-      appBar: TopBar(barName: 'LEAGUES'),
+      appBar: AppBar(leading: BackButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          color: Colors.white,
+        ),
+        elevation: 0,
+        backgroundColor: const Color(0xFF38003C),
+        title: Text('LEAGUES',style: TextStyle(fontSize: 25,
+                  fontFamily: 'SofiaProBold',
+                  color: Color(0xFFFFFFFF),),),),
       body: BlocBuilder<GetLeaguesCubit, GetLeaguesState>(
         builder: (context, state) {
           try {

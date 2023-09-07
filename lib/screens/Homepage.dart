@@ -20,7 +20,7 @@ class Homepage extends StatelessWidget {
 
     return Scaffold(
       appBar: TopBar(barName: 'SPORTSOVERFLOW',),
-      endDrawer: DrawerApp(),
+      endDrawer: const DrawerApp(),
       // backgroundColor: Color(color),
       body: SafeArea(
         child: Column(
@@ -64,7 +64,7 @@ class Homepage extends StatelessWidget {
             // ),
             Expanded(
               child: GridView.builder(
-                physics: NeverScrollableScrollPhysics(),
+                physics: const NeverScrollableScrollPhysics(),
                 itemCount: 4,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
@@ -84,7 +84,7 @@ class Homepage extends StatelessWidget {
                                     'Coming Soon ...',
                                     style: GoogleFonts.aBeeZee(fontSize: 28),
                                   )),
-                                  content: Text('unavailable now'),
+                                  content: const Text('unavailable now'),
                                 );
                               })
                           : {Navigator.push(
@@ -95,7 +95,7 @@ class Homepage extends StatelessWidget {
                             ),context.read<GetCountriesCubit>().getCountries()};
                     },
                     child: Container(
-                      margin: EdgeInsets.all(10),
+                      margin: const EdgeInsets.all(10),
                       decoration: BoxDecoration(
                         color: thirdColor,
                         borderRadius: BorderRadius.circular(20),
@@ -103,7 +103,7 @@ class Homepage extends StatelessWidget {
                           BoxShadow(
                             color: secondColor,
                             blurRadius: 10,
-                            offset: Offset(0, 5),
+                            offset: const Offset(0, 5),
                           ),
                         ],
                       ),
@@ -117,7 +117,7 @@ class Homepage extends StatelessWidget {
                           ),
                           Text(
                             HomePageList[index]['name'],
-                            style: TextStyle(fontSize: 30),
+                            style: const TextStyle(fontSize: 30),
                           )
                         ],
                       ),

@@ -33,7 +33,17 @@ class _PlayersState extends State<Players> {
   Widget build(BuildContext context) {
     return Scaffold(
       endDrawer: DrawerApp(),
-      appBar: TopBar(barName: widget.teamname),
+      appBar: AppBar(leading: BackButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          color: Colors.white,
+        ),
+        elevation: 0,
+        backgroundColor: const Color(0xFF38003C),
+        title: Text('PLAYERS',style: TextStyle(fontSize: 25,
+                  fontFamily: 'SofiaProBold',
+                  color: Color(0xFFFFFFFF),),),),
       body: Column(
         children: [
           const SizedBox(
