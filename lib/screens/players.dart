@@ -41,7 +41,7 @@ class _PlayersState extends State<Players> {
         ),
         elevation: 0,
         backgroundColor: const Color(0xFF38003C),
-        title: Text('PLAYERS',style: TextStyle(fontSize: 25,
+        title: Text(widget.teamname,style: TextStyle(fontSize: 25,
                   fontFamily: 'SofiaProBold',
                   color: Color(0xFFFFFFFF),),),),
       body: Column(

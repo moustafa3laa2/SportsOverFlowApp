@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sports_app_green_eagles/data/cubits/DrawerCubit/drawer_cubit.dart';
 import 'package:sports_app_green_eagles/screens/auth.dart';
+import 'package:sports_app_green_eagles/screens/login_screen.dart';
 import 'package:sports_app_green_eagles/services/auth_services.dart';
 
 class DrawerApp extends StatelessWidget {
@@ -21,7 +22,7 @@ class DrawerApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    AuthService authService = AuthService();
+    // AuthService authService = AuthService();
     return Drawer(
       child: Container(
         color: Colors.white,
@@ -114,11 +115,17 @@ class DrawerApp extends StatelessWidget {
                 style: TextStyle(fontSize: 20, fontFamily: 'SofiaProBold'),
               ),
               onTap: () {
-                authService.handleSignOut();
+                // authService.handleSignOut();
 
-                Navigator.pushAndRemoveUntil(
+                // Navigator.pushAndRemoveUntil(
+                //   context,
+                //   MaterialPageRoute(builder: (context) =>  AuthPage()),
+                //       (route) => false,
+                // );
+
+                 Navigator.pushAndRemoveUntil(
                   context,
-                  MaterialPageRoute(builder: (context) => const AuthPage()),
+                  MaterialPageRoute(builder: (context) =>  LoginScreen()),
                       (route) => false,
                 );
               },

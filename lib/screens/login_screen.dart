@@ -26,34 +26,37 @@ class LoginScreen extends StatelessWidget {
   final TextEditingController usernameController = TextEditingController();
 
 
+
+
+
+
+  
+
+
   @override
   Widget build(BuildContext context) {
-    AuthService authService = AuthService();
+    // AuthService authService = AuthService();
     return Scaffold(
         body: SingleChildScrollView(
             child: Container(
+              decoration: BoxDecoration(
+                color: Color(0xFF38003C),
+              
+              ),
                 height: MediaQuery.of(context).size.height,
                 child: Stack(alignment: Alignment.center, children: [
-                  Image.asset(
-                    'assets/images/mosalah.jpg',
-                    width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height,
-                    fit: BoxFit.cover,
-                  ),
+                  
                   Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         SizedBox(
                             height: MediaQuery.of(context).size.height * 0.05),
-                        IconButton(
-                          icon: const Icon(Icons.arrow_back_ios),
-                          color: Colors.white,
-                          onPressed: () {},
-                        ),
+                        
                         SizedBox(
                             height: MediaQuery.of(context).size.height * 0.18),
                         const Text("Login ",
                             style: TextStyle(
+                              fontFamily: "SofiaProBold",
                                 color: Colors.white,
                                 fontSize: 40,
                                 fontWeight: FontWeight.bold)),
@@ -88,9 +91,9 @@ class LoginScreen extends StatelessWidget {
                                               validator: (value) {
                                                 if (value!.isEmpty) {
                                                   return "phone should not be empty";
-                                                } else if (value.length != 11) {
+                                                } else if (value.length != 13) {
                                                   return "Number should be 11 digits";
-                                                } else if (!value.contains("(+20)")) {
+                                                } else if (!value.contains("+20")) {
                                                   return "Number should start with (+20)";
                                                 }
                                                 return null; // Return null if there are no validation errors.
@@ -344,10 +347,10 @@ class LoginScreen extends StatelessWidget {
 
                                             InkWell(
                                                 onTap: () {
-                                                  authService.handleSignIn();
-                                                  context
-                                                      .read<DrawerCubit>()
-                                                      .getSignINEmail();
+                                                  // authService.handleSignIn();
+                                                  // context
+                                                  //     .read<DrawerCubit>()
+                                                  //     .getSignINEmail();
                                                 },
                                                 child: Image.asset(
                                                   'assets/images/google.png',

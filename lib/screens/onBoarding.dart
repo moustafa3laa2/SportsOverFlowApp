@@ -38,7 +38,8 @@ class _OnBoardingState extends State<OnBoarding> {
       builder: (context, snapshot) {
         if (snapshot.hasData && snapshot.data == true) {
           // تم تخطي صفحة onboarding بالفعل
-          return AuthPage();
+          // return AuthPage();
+          return LoginScreen();
         } else {
           // عرض صفحة onboarding
           return Scaffold(
@@ -53,10 +54,16 @@ class _OnBoardingState extends State<OnBoarding> {
                       SharedPreferences prefs =
                           await SharedPreferences.getInstance();
                       await prefs.setBool('onboarding_skipped', true);
+                      // Navigator.pushReplacement(
+                      //   context,
+                      //   MaterialPageRoute(
+                      //     builder: (context) => AuthPage(),
+                      //   ),
+                      // );
                       Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => AuthPage(),
+                          builder: (context) => LoginScreen(),
                         ),
                       );
                     },

@@ -8,7 +8,7 @@ class GetNewsRepo {
     try {
       var response = await http.get(
         Uri.parse(
-            "https://newsapi.org/v2/everything?q=football&from=2023-08-25&sortBy=publishedAt&apiKey=7c07f0c86d484b30a5af1289c531cff1"),
+            "https://newsapi.org/v2/everything?q=soccer&from=2023-08-25&sortBy=publishedAt&apiKey=7c07f0c86d484b30a5af1289c531cff1"),
       );
 
       var decodedResponse = jsonDecode(response.body);

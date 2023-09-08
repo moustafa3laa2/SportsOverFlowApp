@@ -5,27 +5,23 @@ import 'package:sports_app_green_eagles/data/cubits/GetCountriesCubit/get_countr
 import 'package:sports_app_green_eagles/data/cubits/GetLeaguesCubit/get_leagues_cubit.dart';
 import 'package:sports_app_green_eagles/data/cubits/GetPlayerCubit/get_player_cubit.dart';
 import 'package:sports_app_green_eagles/data/cubits/GetTeamsCubit/get_teams_cubit.dart';
-import 'package:sports_app_green_eagles/screens/Homepage.dart';
-import 'package:sports_app_green_eagles/screens/auth.dart';
-import 'package:sports_app_green_eagles/screens/countries_screen.dart';
-import 'package:sports_app_green_eagles/screens/login_screen.dart';
-import 'package:sports_app_green_eagles/screens/onBoarding.dart';
-import 'package:sports_app_green_eagles/screens/players.dart';
+
 import 'package:sports_app_green_eagles/screens/splash.dart';
-import 'package:sports_app_green_eagles/screens/teams_top_scorers.dart';
-import 'package:sports_app_green_eagles/screens/players.dart';
+
 import 'package:firebase_core/firebase_core.dart';
+import 'package:sports_app_green_eagles/services/notify.dart';
 import 'firebase_options.dart';
 
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
 );
+await FirebaseApi().initNotification();
   runApp(const MyApp());
 }
-
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 

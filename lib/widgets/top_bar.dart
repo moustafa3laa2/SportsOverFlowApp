@@ -14,7 +14,7 @@ class TopBar extends StatelessWidget implements PreferredSizeWidget {
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
   @override
   Widget build(BuildContext context) {
-    AuthService authService = AuthService();
+    // AuthService authService = AuthService();
     return AppBar(
       elevation: 0,
         backgroundColor: const Color(0xFF38003C),

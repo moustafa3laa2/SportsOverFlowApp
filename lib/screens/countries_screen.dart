@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:sports_app_green_eagles/data/cubits/GetCountriesCubit/get_countries_cubit.dart';
 import 'package:sports_app_green_eagles/widgets/countries_container.dart';
 import 'package:sports_app_green_eagles/widgets/drawer.dart';
+import 'package:sports_app_green_eagles/widgets/location_widget.dart';
 import 'package:sports_app_green_eagles/widgets/top_bar.dart';
 
 class CountriesScreen extends StatefulWidget {
@@ -104,16 +105,25 @@ class _CountriesScreenState extends State<CountriesScreen> {
             } else if (state is GetCountriesLoading) {
               return const Center(child: CircularProgressIndicator.adaptive());
             } else if (state is GetCountriesSuccess) {
-              return Padding(
-                padding: const EdgeInsets.all(3),
-                child: GridView.builder(
-                  itemCount: state.response.result.length,
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 4),
-                  itemBuilder: (context, index) {
-                    return CountriesContainer(index: index);
-                  },
-                ),
+              return Column(
+                children: [
+                  const Location(),
+                  Expanded(
+                    flex: 2
+                    ,
+                    child: Padding(
+                      padding: const EdgeInsets.all(3),
+                      child: GridView.builder(
+                        itemCount: state.response.result.length,
+                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 4),
+                        itemBuilder: (context, index) {
+                          return CountriesContainer(index: index);
+                        },
+                      ),
+                    ),
+                  ),
+                ],
               );
             } else if (state is GetNewsLoading) {
               return const Center(child: CircularProgressIndicator());
